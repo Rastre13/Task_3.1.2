@@ -7,12 +7,40 @@
 <body>
 <h1>List of users</h1>
 <hr/>
-<div th:each="user : ${allUsers}">
-    <a th:href="@{users/{id}(id=${user.getId()})}"
-       th:text="${user.getUsername()}">user</a>
-</div>
-
-<br/>
+<table>
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody th:each="user : ${allUsers}">
+    <tr>
+        <td th:text="${user.getId}">VALUE</td>
+        <td th:text="${user.getUsername()}">VALUE</td>
+        <td th:text="${user.getFirstName()}">VALUE</td>
+        <td th:text="${user.getLastName()}">VALUE</td>
+        <td th:text="${user.getAge()}">VALUE</td>
+        <td th:text="${user.getEmail()}">VALUE</td>
+        <td>
+            <a th:each="authorisedRoles : ${user.getRoles()}">
+                <a th:text="${authorisedRoles.toString()}">VALUE</a>
+            </a>
+        </td>
+        <td >
+            <a th:href="@{users/{id}/edit(id=${user.getId()})}">Edit</a>
+        </td>
+        <td >
+            <a th:href="@{users/{id}/delete(id=${user.getId()})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
 <hr/>
 
 <a href="/admin/users/new">Create new user</a>

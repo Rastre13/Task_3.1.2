@@ -11,26 +11,10 @@ import ru.kata.spring.boot_security.demo.model.User;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
-//    private UserService userService;
-//
-//    public UserControllerOld(UserService userService) {
-//        this.userService = userService;
-//    }
-
     @GetMapping()
     public String getUserPage(@AuthenticationPrincipal User user, Role role, Model model) {
         model.addAttribute("authorisedUser", user);
         model.addAttribute("authorisedRoles", role);
         return "user";
     }
-
-//    @GetMapping("/{id}")
-//    public String userPage(@PathVariable("id") Long id, Model model) {
-//        model.addAttribute("user", userService.findUserById(id));
-//        return "userData";
-//    }
-
-
-
 }

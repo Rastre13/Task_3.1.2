@@ -9,6 +9,8 @@ import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 
 @Component
@@ -58,13 +60,19 @@ public class GenerateAdmin {
         roleRepository.save(getRole5());
 
         User admin = new User();
+        Collection<Role> roles = new ArrayList<>();
         admin.setUsername("1");
-        admin.setPassword(new BCryptPasswordEncoder().encode("1"));
-        admin.setFirstName("admin");
-        admin.setLastName("adminov");
-        admin.setAge((byte) 20);
-        admin.setEmail("admin@mail.ru");
-        admin.setRoles(Collections.singleton(getRole1()));
-        userRepository.save(admin);
+        User userFromDB = userRepository.findByUsername(admin.getUsername());
+        if (userFromDB == null) {
+            admin.setPassword(new BCryptPasswordEncoder().encode("1"));
+            roles.add(getRole1());
+            roles.add(getRole2());
+            admin.setFirstName("admin");
+            admin.setLastName("adminov");
+            admin.setAge((byte) 20);
+            admin.setEmail("admin@mail.ru");
+            admin.setRoles(roles);
+            userRepository.save(admin);
+        }
     }
 }

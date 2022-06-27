@@ -32,8 +32,14 @@
     <input type="text" th:field="*{email}" id="email"/>
     <br/>
 
-    <label for="roles">Enter roles: </label>
-    <input type="text" th:field="*{roles}" id="roles"/>
+    <label for="roles">Choose roles: </label>
+    <select multiple class="form-control" id="roles" name="roles" size="3">
+        <option value="1">ADMIN</option>
+        <option value="2">USER</option>
+        <option value="3">MANAGER</option>
+        <option value="4">DIRECTOR</option>
+        <option value="5">ACCOUNTANT</option>
+    </select>
     <br/>
 
     <input type="submit" value="Create"/>

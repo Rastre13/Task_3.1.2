@@ -48,4 +48,9 @@ public class Role implements GrantedAuthority {
         return getName();
     }
 
+    @Override
+    public String toString() {
+        String str = getName();
+        return str.substring(5);
+    }
 }

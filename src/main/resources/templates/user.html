@@ -8,15 +8,14 @@
 <h1>User, welcome to spring boot security page!</h1>
 
 <p th:text="${'Username:' + authorisedUser.getUsername()}">VALUE</p>
-<p th:text="${'Password:' + authorisedUser.getPassword()}">VALUE</p>
-<hr/>
 <p th:text="${'FirstName:' + authorisedUser.getFirstName()}">VALUE</p>
 <p th:text="${'LastName:' + authorisedUser.getLastName()}">VALUE</p>
 <p th:text="${'Age:' + authorisedUser.getAge()}">VALUE</p>
 <p th:text="${'Email:' + authorisedUser.getEmail()}">VALUE</p>
-<div th:each="authorisedRoles : ${authorisedUser.getRoles()}">
-    <p th:text="${'Roles:' + authorisedRoles.getName()}">VALUE</p>
-</div>
+<p th:text="${'Roles:'}">VALUE</p>
+<a th:each="authorisedRoles : ${authorisedUser.getRoles()}">
+    <a th:text="${authorisedRoles.toString()}">VALUE</a>
+</a>
 
 <hr/>
 <a href="/login">Logout</a>
